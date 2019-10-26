@@ -1,5 +1,6 @@
 import bluepy
 import sys
+from drone import Drone, TaggedMarkers, Marker
 from statistics import stdev
 from bluepy.btle import Scanner, DefaultDelegate
 
@@ -55,44 +56,34 @@ def gatherAverageRSSI(manufacturer, n_samples, scanner):
 
 # create a scanner object that sends BLE broadcast packets to the ScanDelegate
 scanner = Scanner().withDelegate(ScanDelegate())
-
-
-def move(distance):
-    print "move forward " + str(distance)
-    input()
-    return
-
-
-def rotate(angle):
-    print "rotate " + str(angle)
-    return
-
-
 rssi = gatherAverageRSSI(manufacturer, 7, scanner)
 
 # define whether to rotate clockwise or anticlockwise
 rotate_dir = 1
 
+drone = Drone()
 
 # stop the method because we're close enough
 while rssi < -40:
     mv_distance = abs(rssi) * 0.02
-    move(mv_distance)
+    drone.moveForward(mv_distance)
     last_rssi = rssi
     rssi = gatherAverageRSSI(manufacturer, 7, scanner)
     if last_rssi > rssi:
-        rotate(180)
-        move(mv_distance / 2)
-        rotate(rotate_dir * 90)
+        drone.rotate(90)
+        drone.rotate(90)
+        drone.moveForward(mv_distance / 2)
+        drone.rotate(rotate_dir * 90)
         last_rssi = rssi
         rssi = gatherAverageRSSI(manufacturer, 7, scanner)
         mv_distance = abs(rssi) * 0.02
-        move(mv_distance)
+        drone.moveForward(mv_distance)
         last_rssi = rssi
         rssi = gatherAverageRSSI(manufacturer, 7, scanner)
         if last_rssi > rssi:
             rotate_dir = rotate_dir * -1
-            rotate(180)
-            move(mv_distance * 2)
+            drone.rotate(90)
+            drone.rotate(90)
+            drone.moveForward(mv_distance * 2)
             last_rssi = rssi
             rssi = gatherAverageRSSI(manufacturer, 7, scanner)
