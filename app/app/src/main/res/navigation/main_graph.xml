@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/delivery_fragment">
+    app:startDestination="@id/order_fragment">
 
     <fragment
         android:id="@+id/order_fragment"
         android:name="com.substandard.waiter.ui.main.OrderFragment"
         android:label="Order"
-        tools:layout="@layout/order_fragment" />
+        tools:layout="@layout/order_fragment" >
+        <action
+            android:id="@+id/action_order_fragment_to_delivery_fragment"
+            app:destination="@id/delivery_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/delivery_fragment"
