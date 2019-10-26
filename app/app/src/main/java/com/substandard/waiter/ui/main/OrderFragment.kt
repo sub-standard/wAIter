@@ -31,7 +31,7 @@ class OrderFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
         binding.fragment = this
     }
 
@@ -43,6 +43,8 @@ class OrderFragment : Fragment() {
 
     fun onDrinkPress(drink: Drinks) {
         viewModel.setOrder(drink)
+
         navController.navigate(R.id.action_order_fragment_to_orderedFragment)
+
     }
 }

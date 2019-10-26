@@ -4,8 +4,14 @@ import androidx.lifecycle.ViewModel
 import com.substandard.waiter.Drinks
 
 class MainViewModel : ViewModel() {
+
+    private var orderDrinks: Drinks? = null
+
     fun setOrder(order: Drinks) {
-        when (order) {
-        }
+        orderDrinks = order
+    }
+
+    fun getOrder(): Drinks? {
+        return orderDrinks
     }
 }
