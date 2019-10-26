@@ -12,6 +12,8 @@ class Drone():
         self.drone.reset()
         while (self.drone.getBattery()[0] == -1):
             time.sleep(0.1)
+        self.drone.useDemoMode(True)
+        self.drone.getNDpackage(["demo", "altitude", "vision_detect", "time"])
         self.configure()
 
     def configure(self):
