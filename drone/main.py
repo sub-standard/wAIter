@@ -1,8 +1,10 @@
 import bluepy
 import sys
+import time
+import binascii
 from drone import Drone, TaggedMarkers, Marker
-from statistics import stdev
-from bluepy.btle import Scanner, DefaultDelegate
+from statistics import stdev, mean
+from bluepy.btle import DefaultDelegate, BluepyHelper, BTLEException, ScanEntry
 
 
 manufacturer = sys.argv[1]
@@ -11,19 +13,17 @@ print "scanning for device with manufacture data |" + manufacturer + "|"
 
 # create a delegate class to receive the BLE broadcast packets
 
+
 class Scanner(BluepyHelper):
 
-
-    def __init__(self,iface=0):
+    def __init__(self, iface=0):
         BluepyHelper.__init__(self)
         self.scanned = {}
-        self.iface=iface
-        self.passive=False
-
+        self.iface = iface
+        self.passive = False
 
     def _cmd(self):
         return "pasv" if self.passive else "scan"
-
 
     def start(self, passive=False):
         self.passive = passive
@@ -40,15 +40,12 @@ class Scanner(BluepyHelper):
             assert rsp["state"][0] == "disc"
             self._mgmtCmd(self._cmd())
 
-
     def stop(self):
         self._mgmtCmd(self._cmd()+"end")
         self._stopHelper()
 
-
     def clear(self):
         self.scanned = {}
-
 
     def process(self, timeout=10.0):
         if self._helper is None:
@@ -75,7 +72,7 @@ class Scanner(BluepyHelper):
             elif respType == 'scan':
                 # device found
                 addr = binascii.b2a_hex(resp['addr'][0]).decode('utf-8')
-                addr = ':'.join([addr[i:i+2] for i in range(0,12,2)])
+                addr = ':'.join([addr[i:i+2] for i in range(0, 12, 2)])
                 if addr in self.scanned:
                     dev = self.scanned[addr]
                 else:
@@ -83,13 +80,14 @@ class Scanner(BluepyHelper):
                     self.scanned[addr] = dev
                 isNewData = dev._update(resp)
                 if self.delegate is not None:
-                    self.delegate.handleDiscovery(dev, (dev.updateCount <= 1), isNewData)
+                    self.delegate.handleDiscovery(
+                        dev, (dev.updateCount <= 1), isNewData)
 
             else:
-                raise BTLEException(BTLEException.INTERNAL_ERROR, "Unexpected response: " + respType)
+                raise BTLEException(
+                    BTLEException.INTERNAL_ERROR, "Unexpected response: " + respType)
 
-
-    def gatherAverageRSSI(self,manufacturer, n_samples, passive=False):
+    def gatherAverageRSSI(self, manufacturer, n_samples, passive=False):
         self.clear()
         self.start(passive=passive)
 
@@ -112,7 +110,7 @@ class Scanner(BluepyHelper):
             elif respType == 'scan':
                 # device found
                 addr = binascii.b2a_hex(resp['addr'][0]).decode('utf-8')
-                addr = ':'.join([addr[i:i+2] for i in range(0,12,2)])
+                addr = ':'.join([addr[i:i+2] for i in range(0, 12, 2)])
                 if addr in self.scanned:
                     dev = self.scanned[addr]
                 else:
@@ -125,7 +123,8 @@ class Scanner(BluepyHelper):
                         rssi_scans.append(dev.rssi)
 
             else:
-                    raise BTLEException(BTLEException.INTERNAL_ERROR, "Unexpected response: " + respType)
+                raise BTLEException(
+                    BTLEException.INTERNAL_ERROR, "Unexpected response: " + respType)
 
         mean_rssi = mean(rssi_scans)
 
@@ -143,10 +142,8 @@ class Scanner(BluepyHelper):
         self.stop()
         return mean(cutoff_rssi)
 
-
     def getDevices(self):
         return self.scanned.values()
-
 
     def scan(self, timeout=10, passive=False):
         self.clear()
@@ -154,6 +151,7 @@ class Scanner(BluepyHelper):
         self.process(timeout)
         self.stop()
         return self.getDevices()
+
 
 scanner = Scanner()
 rssi = scanner.gatherAverageRSSI(manufacturer, 7, scanner)
