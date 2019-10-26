@@ -7,6 +7,8 @@ import com.substandard.waiter.Drinks
 class MainViewModel : ViewModel() {
     private val id = "abcdefghijklmnop"
 
+    private var orderDrinks: Drinks? = null
+
     private val beacon =
         iBeacon(id.toByteArray(), 0, 0, "wAIter")
 
@@ -15,7 +17,10 @@ class MainViewModel : ViewModel() {
     fun stopBeacon() = beacon.stop()
 
     fun setOrder(order: Drinks) {
-        when (order) {
-        }
+        orderDrinks = order
+    }
+
+    fun getOrder(): Drinks? {
+        return orderDrinks
     }
 }

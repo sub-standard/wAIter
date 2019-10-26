@@ -8,7 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.substandard.waiter.Drinks
+import com.substandard.waiter.R
 import com.substandard.waiter.databinding.OrderedFragmentBinding
+import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.ordered_fragment.*
 
 class OrderedFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
@@ -17,20 +21,41 @@ class OrderedFragment : Fragment() {
 
     private lateinit var binding: OrderedFragmentBinding
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding= OrderedFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
+
+        println("onCreateView")
+
         return binding.root
 
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
         binding.viewModel = viewModel
+
+        // Change image based on drink ordered
+        when(viewModel.getOrder()) {
+            Drinks.SOTB -> drinkOrdered.setImageResource(R.drawable.sex_on_the_beach)
+            Drinks.AS -> drinkOrdered.setImageResource(R.drawable.aperol_spritz)
+            Drinks.BL -> drinkOrdered.setImageResource(R.drawable.blue_lagoon)
+            Drinks.BM -> drinkOrdered.setImageResource(R.drawable.bloody_mary)
+            Drinks.MJ -> drinkOrdered.setImageResource(R.drawable.mojito)
+            Drinks.MT -> drinkOrdered.setImageResource(R.drawable.mai_tai)
+            Drinks.PR -> drinkOrdered.setImageResource(R.drawable.purple_rain)
+            Drinks.WM -> drinkOrdered.setImageResource(R.drawable.watermelon_margarhitas)
+        }
+
+        // Start a thread to poll if order ready to deliver
+        pollOrder()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,4 +63,10 @@ class OrderedFragment : Fragment() {
 
         navController = view.findNavController()
     }
+
+    fun pollOrder() {
+        
+    }
+
+
 }
