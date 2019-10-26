@@ -19,8 +19,8 @@ class Drone():
     def configure(self):
         CDC = self.drone.ConfigDataCount
         self.drone.setConfig("general:ardrone_name", "wAIter")
-        self.drone.setConfig("detect:detect type", "3")
-        self.drone.setConfig("detect:detections select v", "128")
+        self.drone.setConfig("detect:detect_type", "3")
+        self.drone.setConfig("detect:detections_select_v", "128")
         while CDC == self.drone.ConfigDataCount:
             time.sleep(0.0001)
 
