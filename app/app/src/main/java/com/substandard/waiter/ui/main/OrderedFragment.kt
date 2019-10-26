@@ -41,6 +41,7 @@ class OrderedFragment : Fragment() {
         viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
         binding.viewModel = viewModel
 
+        // Change image based on drink ordered
         when(viewModel.getOrder()) {
             Drinks.SOTB -> drinkOrdered.setImageResource(R.drawable.sex_on_the_beach)
             Drinks.AS -> drinkOrdered.setImageResource(R.drawable.aperol_spritz)
@@ -52,12 +53,19 @@ class OrderedFragment : Fragment() {
             Drinks.WM -> drinkOrdered.setImageResource(R.drawable.watermelon_margarhitas)
         }
 
+        // Start a thread to poll if order ready to deliver
+        pollOrder()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         navController = view.findNavController()
+    }
+
+    fun pollOrder() {
+        
     }
 
 

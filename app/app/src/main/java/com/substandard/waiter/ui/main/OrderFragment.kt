@@ -44,6 +44,8 @@ class OrderFragment : Fragment() {
     fun onDrinkPress(drink: Drinks) {
         viewModel.setOrder(drink)
 
+        //TODO send signal to site with drink
+
         navController.navigate(R.id.action_order_fragment_to_orderedFragment)
 
     }
