@@ -83,7 +83,7 @@ export default function OrdersList() {
         <TableHeaders>
           <TableHeader>Order Number</TableHeader>
           <TableHeader>Item</TableHeader>
-          <TableHeader>Accept Order</TableHeader>
+          <TableHeader>Send Order</TableHeader>
         </TableHeaders>
 
         {orders.map(order => (
@@ -95,7 +95,7 @@ export default function OrdersList() {
               <Name>{order.name}</Name>
             </Data>
             <Data>
-              <Button>Accept Order</Button>
+              <Button>Send Order</Button>
             </Data>
           </Item>
         ))}
