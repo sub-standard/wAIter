@@ -3,6 +3,8 @@ import time
 
 
 class Drone():
+
+    # ~~~~ INIT ~~~~
     def __init__(self):
         self.drone = ps_drone.Drone()
         self.drone.startup()
@@ -19,12 +21,15 @@ class Drone():
         while CDC == self.drone.ConfigDataCount:
             time.sleep(0.0001)
 
+    # ~~~~ STATUS ~~~~
     def getBatteryPercent(self):
         return self.drone.getBattery()[0]
 
     def getBatteryStatus(self):
         return self.drone.getBattery()[1]
 
+    # ~~~~ NAVIGATIONAL DATA ~~~~
+    # ~~~~ MOVEMENT COMMANDS ~~~~
     def takeoff(self):
         self.drone.takeoff()
 
@@ -47,6 +52,7 @@ class Drone():
         self.drone.turnAngle(angle, 0.0)
 
     def getTaggedMarkers(self):
+    # ~~~~ PRIVATE FUNCTIONS ~~~~~
         NDC = self.drone.NavDataCount
         while self.drone.NavData == NDC:
             time.sleep(0.01)
