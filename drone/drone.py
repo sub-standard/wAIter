@@ -1,5 +1,6 @@
 import ps_drone
 import time
+from math import sqrt
 
 
 class Drone():
@@ -78,26 +79,54 @@ class Drone():
         self.drone.land()
 
     def moveForward(self, distance):
-        self.drone.moveForward(5)
+        self.drone.moveForward()
+        self.waitForDistance(distance)
+        self.stop()
 
     def moveLeft(self, distance):
-        self.drone.moveLeft(5)
+        self.drone.moveLeft()
+        self.waitForDistance(distance)
+        self.stop()
 
     def moveRight(self, distance):
-        self.drone.moveRight(5)
+        self.drone.moveRight()
+        self.waitForDistance(distance)
+        self.stop()
 
     def moveBack(self, distance):
-        self.drone.moveBackward(5)
+        self.drone.moveBackward()
+        self.waitForDistance(distance)
+        self.stop()
 
     def rotate(self, angle):
         self.drone.turnAngle(angle, 0.0)
 
-    def getTaggedMarkers(self):
+    def driftRight(self):
+        self.drone.move(0.2, 0, 0, -0.2)
+
+    def driftLeft(self):
+        self.drone.move(-0.2, 0, 0, 0.2)
+
+    def stop(self):
+        self.drone.stop()
+
     # ~~~~ PRIVATE FUNCTIONS ~~~~~
+    def waitForNavData(self):
         NDC = self.drone.NavDataCount
         while self.drone.NavData == NDC:
             time.sleep(0.01)
-        return TaggedMarkers(self.drone.NavData["vision_detect"])
+
+    def waitForDistance(self, distance):
+        n = 1
+        avgSpeed = 0
+        currentDistance = 0
+        droneStartTime = self.getDroneTime()
+        while currentDistance < distance:
+            avgSpeed = avgSpeed + (self.getSpeed() - avgSpeed) / n
+            n += 1
+            time.sleep(0.1)
+            droneCurrentTime = self.getDroneTime()
+            currentDistance = avgSpeed * (droneCurrentTime - droneStartTime)
 
 
 class TaggedMarkers():
