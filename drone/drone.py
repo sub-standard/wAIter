@@ -22,11 +22,20 @@ class Drone():
             time.sleep(0.0001)
 
     # ~~~~ STATUS ~~~~
+    def getDroneTime(self):
+        return self.drone.NavDataTimeStamp
+
     def getBatteryPercent(self):
         return self.drone.getBattery()[0]
 
     def getBatteryStatus(self):
         return self.drone.getBattery()[1]
+
+    def getMotorStatus(self):
+        return self.drone.State[12]
+
+    def getUltrasonicSensorStatus(self):
+        return self.drone.State[21]
 
     # ~~~~ NAVIGATIONAL DATA ~~~~
     # ~~~~ MOVEMENT COMMANDS ~~~~
