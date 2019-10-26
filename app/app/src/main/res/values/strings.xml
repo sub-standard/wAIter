@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">wAIter</string>
+
+    <string name="delivery_button_text">My Order Arrived!</string>
 </resources>
