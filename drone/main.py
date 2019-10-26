@@ -160,6 +160,7 @@ rssi = scanner.gatherAverageRSSI(manufacturer, 7, scanner)
 rotate_dir = 1
 
 drone = Drone()
+drone.takeoff()
 
 # stop the method because we're close enough
 while rssi < -40:
@@ -185,3 +186,5 @@ while rssi < -40:
             drone.moveForward(mv_distance * 2)
             last_rssi = rssi
             rssi = scanner.gatherAverageRSSI(manufacturer, 7, scanner)
+
+drone.land()
