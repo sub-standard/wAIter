@@ -1,20 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.OrderFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OrderFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="fragment"
+            type="com.substandard.waiter.ui.main.OrderFragment" />
+        <variable
+            name="drinks"
+            type="com.substandard.waiter.Drinks" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.OrderFragment">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onDrinkPress(drinks.SOTB)}"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Sex on the Beach"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/sex_on_the_beach" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onDrinkPress(drinks.BM)}"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Bloody Mary"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/bloody_mary" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onDrinkPress(drinks.BL)}"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Blue Lagoon"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/blue_lagoon" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onDrinkPress(drinks.AS)}"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Aperol Spritz"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/aperol_spritz" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onDrinkPress(drinks.MT)}"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Mai Tai"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/mai_tai" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onDrinkPress(drinks.MJ)}"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Mojito"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/mojito" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onDrinkPress(drinks.PR)}"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Purple Rain"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/purple_rain" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->fragment.onDrinkPress(drinks.WM)}"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Watermelon Margarita"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/watermelon_margarhitas" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
