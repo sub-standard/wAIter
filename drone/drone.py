@@ -38,6 +38,38 @@ class Drone():
         return self.drone.State[21]
 
     # ~~~~ NAVIGATIONAL DATA ~~~~
+    def getSpeed(self):
+        return sqrt(self.getSpeedX()**2 + self.getSpeedY()**2 + self.getSpeedZ()**2)
+
+    def getSpeedX(self):
+        return self.drone.NavData["demo"][4][0]
+
+    def getSpeedY(self):
+        return self.drone.NavData["demo"][4][1]
+
+    def getSpeedZ(self):
+        return self.drone.NavData["demo"][4][2]
+
+    def getPitch(self):
+        self.waitForNavData()
+        return self.drone.NavData["demo"][2][0]
+
+    def getRoll(self):
+        self.waitForNavData()
+        return self.drone.NavData["demo"][2][1]
+
+    def getYaw(self):
+        self.waitForNavData()
+        return self.drone.NavData["demo"][2][2]
+
+    def getAltitude(self):
+        self.waitForNavData()
+        return self.drone.NavData["altitude"][3]
+
+    def getTaggedMarkers(self):
+        self.waitForNavData()
+        return TaggedMarkers(self.drone.NavData["vision_detect"])
+
     # ~~~~ MOVEMENT COMMANDS ~~~~
     def takeoff(self):
         self.drone.takeoff()
