@@ -42,4 +42,7 @@ dependencies {
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.0-alpha03'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.0-alpha03'
+
+    // Beacons Android
+   implementation 'com.uriio:beacons-android:1.5.2'
 }
