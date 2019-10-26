@@ -21,9 +21,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     dataBinding {
         enabled = true
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
@@ -44,5 +46,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.0-alpha03'
 
     // Beacons Android
-   implementation 'com.uriio:beacons-android:1.5.2'
+    implementation 'com.uriio:beacons-android:1.5.2'
+
+    // MongoDB
+    implementation 'org.mongodb:stitch-android-sdk:4.6.0'
+
 }
