@@ -71,7 +71,16 @@ class Drone():
 
     def getTaggedMarkers(self):
         self.waitForNavData()
-        return TaggedMarkers(self.drone.NavData["vision_detect"])
+        markers = []
+        visionDetect = self.drone.NavData["vision_detect"]
+        for i in range(visionDetect[0]):
+            markers[i] = Marker(
+                visionDetect[2][i],
+                visionDetect[3][i],
+                visionDetect[6][i],
+                visionDetect[7][i]
+            )
+        return markers
 
     # ~~~~ MOVEMENT COMMANDS ~~~~
     def takeoff(self):
@@ -80,22 +89,34 @@ class Drone():
     def land(self):
         self.drone.land()
 
-    def moveForward(self, distance):
+    def moveForward(self, speed=None):
+        self.drone.moveForward(speed)
+
+    def moveLeft(self, speed=None):
+        self.drone.moveLeft(speed)
+
+    def moveRight(self, speed=None):
+        self.drone.moveRight(speed)
+
+    def moveBack(self, speed=None):
+        self.drone.moveBackward(speed)
+
+    def moveForwardDistance(self, distance):
         self.drone.moveForward()
         self.waitForDistance(distance)
         self.stop()
 
-    def moveLeft(self, distance):
+    def moveLeftDistance(self, distance):
         self.drone.moveLeft()
         self.waitForDistance(distance)
         self.stop()
 
-    def moveRight(self, distance):
+    def moveRightDistance(self, distance):
         self.drone.moveRight()
         self.waitForDistance(distance)
         self.stop()
 
-    def moveBack(self, distance):
+    def moveBackDistance(self, distance):
         self.drone.moveBackward()
         self.waitForDistance(distance)
         self.stop()
@@ -129,18 +150,6 @@ class Drone():
             time.sleep(0.1)
             droneCurrentTime = self.getDroneTime()
             currentDistance = avgSpeed * (droneCurrentTime - droneStartTime)
-
-
-class TaggedMarkers():
-    def __init__(self, visionDetect):
-        self.markers = []
-        for i in range(visionDetect[0]):
-            self.markers[i] = Marker(
-                visionDetect[2][i],
-                visionDetect[3][i],
-                visionDetect[6][i],
-                visionDetect[7][i]
-            )
 
 
 class Marker():
