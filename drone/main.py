@@ -31,7 +31,7 @@ print "Motor Status             : " + drone.getMotorStatus()
 print "Ultrasonic Sensor Status : " + drone.getUltrasonicSensorStatus()
 print "Status check complete"
 
-scanner.sampleRSSI(manufacturer, 1)
+# scanner.sampleRSSI(manufacturer, 1)
 print "Located next destination"
 
 print "Taking off"
