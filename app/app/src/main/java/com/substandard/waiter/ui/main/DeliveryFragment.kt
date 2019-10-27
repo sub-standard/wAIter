@@ -38,8 +38,8 @@ class DeliveryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
 
-        viewModel.finished.observe(this, Observer {
-            if (it) {
+        viewModel.status.observe(this, Observer {
+            if (it == "delivered") {
                 Toast.makeText(activity!!, "Enjoy your drink!", Toast.LENGTH_LONG).show()
                 navController.popBackStack()
             }

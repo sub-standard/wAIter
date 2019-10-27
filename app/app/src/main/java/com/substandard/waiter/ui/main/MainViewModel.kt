@@ -19,8 +19,8 @@ class MainViewModel : ViewModel() {
 
     private val mongo = MongoClient()
 
-    private val _finished = MutableLiveData(false)
-    val finished: LiveData<Boolean> = _finished
+    private val _status = MutableLiveData("none")
+    val status: LiveData<String> = _status
 
     fun startBeacon() = beacon.start()
 
@@ -38,7 +38,7 @@ class MainViewModel : ViewModel() {
         stopBeacon()
 
         mongo.client.callFunction("set_delivered", listOf(orderId)).addOnCompleteListener {
-            _finished.postValue(true)
+            _status.postValue("delivered")
         }
     }
 }
