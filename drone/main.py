@@ -41,8 +41,15 @@ print "Moving towards target"
 drone.moveForward(0.05)
 
 markers = None
+start = time.time
 while markers == None:
     markers = drone.getTaggedMarkers()
+    end = time.time
+    if end - start > 2:
+        drone.stop()
+        drone.land()
+        exit()
+
 drone.stop()
 print "Located LZ"
 
