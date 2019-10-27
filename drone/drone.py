@@ -73,6 +73,9 @@ class Drone():
         self.waitForNavData()
         markers = []
         visionDetect = self.drone.NavData["vision_detect"]
+        if visionDetect[0] == 0:
+            return None
+
         for i in range(visionDetect[0]):
             markers[i] = Marker(
                 visionDetect[2][i],
