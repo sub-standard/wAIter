@@ -1,5 +1,7 @@
 package com.substandard.waiter.ui.main
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.substandard.waiter.Drinks
 import com.substandard.waiter.MongoClient
@@ -10,10 +12,15 @@ class MainViewModel : ViewModel() {
 
     private var orderDrinks: Drinks? = null
 
+    private var orderId: String? = null
+
     private val beacon =
         iBeacon(id.toByteArray(), 0, 0, "wAIter")
 
     private val mongo = MongoClient()
+
+    private val _finished = MutableLiveData(false)
+    val finished: LiveData<Boolean> = _finished
 
     fun startBeacon() = beacon.start()
 
@@ -25,5 +32,13 @@ class MainViewModel : ViewModel() {
 
     fun getOrder(): Drinks? {
         return orderDrinks
+    }
+
+    fun orderDelivered() {
+        stopBeacon()
+
+        mongo.client.callFunction("set_delivered", listOf(orderId)).addOnCompleteListener {
+            _finished.postValue(true)
+        }
     }
 }
