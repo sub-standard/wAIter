@@ -55,7 +55,7 @@ class OrderedFragment : Fragment() {
 
         viewModel.status.observe(this, Observer {
             if (it == "sending") {
-                navController.navigate(R.id.action_orderedFragment_to_delivery_fragment)
+                navController.navigate(R.id.action_ordered_fragment_to_delivery_fragment)
             }
         })
     }

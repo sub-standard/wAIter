@@ -9,23 +9,30 @@
         android:id="@+id/order_fragment"
         android:name="com.substandard.waiter.ui.main.OrderFragment"
         android:label="Order"
-        tools:layout="@layout/order_fragment" >
+        tools:layout="@layout/order_fragment">
         <action
-            android:id="@+id/action_order_fragment_to_orderedFragment"
-            app:destination="@id/orderedFragment" />
+            android:id="@+id/action_order_fragment_to_ordered_fragment"
+            app:destination="@id/ordered_fragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/ordered_fragment"
+        android:name="com.substandard.waiter.ui.main.OrderedFragment"
+        android:label="Ordered">
+        <action
+            android:id="@+id/action_ordered_fragment_to_delivery_fragment"
+            app:destination="@id/delivery_fragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/delivery_fragment"
         android:name="com.substandard.waiter.ui.main.DeliveryFragment"
         android:label="Delivery"
-        tools:layout="@layout/delivery_fragment" />
-    <fragment
-        android:id="@+id/orderedFragment"
-        android:name="com.substandard.waiter.ui.main.OrderedFragment"
-        android:label="OrderedFragment" >
+        tools:layout="@layout/delivery_fragment" >
         <action
-            android:id="@+id/action_orderedFragment_to_delivery_fragment"
-            app:destination="@id/delivery_fragment" />
+            android:id="@+id/action_delivery_fragment_to_order_fragment"
+            app:destination="@id/order_fragment"
+            app:popUpTo="@+id/order_fragment" />
     </fragment>
 </navigation>

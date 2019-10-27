@@ -23,7 +23,7 @@ class OrderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= OrderFragmentBinding.inflate(inflater, container, false)
+        binding = OrderFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         return binding.root
 
@@ -48,7 +48,7 @@ class OrderFragment : Fragment() {
 
         //TODO send signal to site with drink
 
-        navController.navigate(R.id.action_order_fragment_to_orderedFragment)
+        navController.navigate(R.id.action_order_fragment_to_ordered_fragment)
 
     }
 }

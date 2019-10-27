@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.substandard.waiter.R
 import com.substandard.waiter.databinding.DeliveryFragmentBinding
 
 class DeliveryFragment : Fragment() {
@@ -35,8 +36,9 @@ class DeliveryFragment : Fragment() {
 
         viewModel.status.observe(this, Observer {
             if (it == "delivered") {
+                viewModel.stopBeacon()
+                navController.navigate(R.id.action_delivery_fragment_to_order_fragment)
                 Toast.makeText(activity!!, "Enjoy your drink!", Toast.LENGTH_LONG).show()
-                navController.popBackStack()
             }
         })
     }
