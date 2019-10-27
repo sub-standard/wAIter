@@ -71,7 +71,16 @@ class Drone():
 
     def getTaggedMarkers(self):
         self.waitForNavData()
-        return TaggedMarkers(self.drone.NavData["vision_detect"])
+        markers = []
+        visionDetect = self.drone.NavData["vision_detect"]
+        for i in range(visionDetect[0]):
+            markers[i] = Marker(
+                visionDetect[2][i],
+                visionDetect[3][i],
+                visionDetect[6][i],
+                visionDetect[7][i]
+            )
+        return markers
 
     # ~~~~ MOVEMENT COMMANDS ~~~~
     def takeoff(self):
@@ -141,18 +150,6 @@ class Drone():
             time.sleep(0.1)
             droneCurrentTime = self.getDroneTime()
             currentDistance = avgSpeed * (droneCurrentTime - droneStartTime)
-
-
-class TaggedMarkers():
-    def __init__(self, visionDetect):
-        self.markers = []
-        for i in range(visionDetect[0]):
-            self.markers[i] = Marker(
-                visionDetect[2][i],
-                visionDetect[3][i],
-                visionDetect[6][i],
-                visionDetect[7][i]
-            )
 
 
 class Marker():
