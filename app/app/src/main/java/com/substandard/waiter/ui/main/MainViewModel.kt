@@ -1,8 +1,9 @@
 package com.substandard.waiter.ui.main
 
 import androidx.lifecycle.ViewModel
-import com.uriio.beacons.model.iBeacon
 import com.substandard.waiter.Drinks
+import com.substandard.waiter.MongoClient
+import com.uriio.beacons.model.iBeacon
 
 class MainViewModel : ViewModel() {
     private val id = "abcdefghijklmnop"
@@ -11,6 +12,8 @@ class MainViewModel : ViewModel() {
 
     private val beacon =
         iBeacon(id.toByteArray(), 0, 0, "wAIter")
+
+    private val mongo = MongoClient()
 
     fun startBeacon() = beacon.start()
 
