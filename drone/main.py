@@ -2,7 +2,7 @@ import sys
 import signal
 import time
 from drone import Drone
-from scanner import Scanner
+# from scanner import Scanner
 
 
 def signal_handler(sig, frame):
@@ -18,7 +18,7 @@ def withinRange(value):
 
 signal.signal(signal.SIGINT, signal_handler)
 manufacturer = sys.argv[1]
-scanner = Scanner()
+# scanner = Scanner()
 
 print "Initalising wAIter Drone"
 drone = Drone()
