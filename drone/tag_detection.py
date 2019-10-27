@@ -70,5 +70,3 @@ while not stop:
         for i in range(0, tagNum):
             print "Tag no "+str(i)+" : X= "+str(tagX[i])+"  Y= "+str(
                 tagY[i])+"  Dist= "+str(tagZ[i])+"  Orientation= "+str(tagRot[i])
-    else:
-        print "No tag detected"
