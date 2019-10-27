@@ -105,7 +105,7 @@ export default function OrdersList(props) {
                 <Number>{order.number}</Number>
               </Data>
               <Data>
-                <Name>{order.name}</Name>
+                <Name>{order.drink}</Name>
               </Data>
               <Data>
                 <Button onClick={() => sendOrder(order._id.toString())}>

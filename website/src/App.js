@@ -34,6 +34,13 @@ const Title = styled.h1`
   font-size: 2.4rem;
 `
 
+const ClearOrders = styled.p`
+  color: #1b1b1b;
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-bottom: 24px;
+`
+
 const API_KEY =
   "7wznwkK7WjbhrtYqoAMAhhNWIc4d6nRtOuLmZK3jLuu0a0DAvnH87yB2DKgVpixX"
 const APP_ID = "waiter-zxnop"
@@ -45,6 +52,10 @@ export default function App() {
     client.auth.loginWithCredential(new UserApiKeyCredential(API_KEY))
   }, [])
 
+  function clearOrders() {
+    client.callFunction("delete_orders", [])
+  }
+
   return (
     <Container>
       <Nav>
@@ -53,6 +64,8 @@ export default function App() {
       </Nav>
 
       <OrdersList client={client} />
+
+      <ClearOrders onClick={clearOrders}>Clear Orders</ClearOrders>
     </Container>
   )
 }
