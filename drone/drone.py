@@ -80,22 +80,34 @@ class Drone():
     def land(self):
         self.drone.land()
 
-    def moveForward(self, distance):
+    def moveForward(self, speed=None):
+        self.drone.moveForward(speed)
+
+    def moveLeft(self, speed=None):
+        self.drone.moveLeft(speed)
+
+    def moveRight(self, speed=None):
+        self.drone.moveRight(speed)
+
+    def moveBack(self, speed=None):
+        self.drone.moveBackward(speed)
+
+    def moveForwardDistance(self, distance):
         self.drone.moveForward()
         self.waitForDistance(distance)
         self.stop()
 
-    def moveLeft(self, distance):
+    def moveLeftDistance(self, distance):
         self.drone.moveLeft()
         self.waitForDistance(distance)
         self.stop()
 
-    def moveRight(self, distance):
+    def moveRightDistance(self, distance):
         self.drone.moveRight()
         self.waitForDistance(distance)
         self.stop()
 
-    def moveBack(self, distance):
+    def moveBackDistance(self, distance):
         self.drone.moveBackward()
         self.waitForDistance(distance)
         self.stop()
