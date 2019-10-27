@@ -8,12 +8,12 @@ drone.takeoff()           # Drone starts
 time.sleep(7.5)           # Gives the drone time to start
 
 drone.moveForward()       # Drone flies forward...
-time.sleep(1)             # ... for two seconds
+time.sleep(1.5)             # ... for two seconds
 drone.stop()              # Drone stops...
 time.sleep(2)             # ... needs, like a car, time to stop
 
-drone.moveBackward(0.5)   # Drone flies backward with a quarter speed...
-time.sleep(2)             # ... for one and a half seconds
+drone.moveBackward()   # Drone flies backward with a quarter speed...
+time.sleep(1.5)             # ... for one and a half seconds
 drone.stop()              # Drone stops
 time.sleep(2)
 

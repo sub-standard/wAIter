@@ -31,9 +31,7 @@ print "Motor Status             : " + drone.getMotorStatus()
 print "Ultrasonic Sensor Status : " + drone.getUltrasonicSensorStatus()
 print "Status check complete"
 
-rssi = None
-while rssi == None:
-    rssi = scanner.gatherAverageRSSI(manufacturer, 7)
+scanner.sampleRSSI(manufacturer, 1)
 print "Located next destination"
 
 print "Taking off"

@@ -78,6 +78,48 @@ class Scanner(BluepyHelper):
                 raise BTLEException(
                     BTLEException.INTERNAL_ERROR, "Unexpected response: " + respType)
 
+    def sampleRSSI(self, manufacturer, n_samples, passive=False):
+        self.clear()
+        self.start(passive=passive)
+
+        rssi_scans = []
+
+        while len(rssi_scans) < n_samples:
+            # wait 3 seconds before a timeout
+            resp = self._waitResp(['scan', 'stat'], 3.0)
+            #                                        ^
+
+            if resp is None:
+                break
+
+            respType = resp['rsp'][0]
+            if respType == 'stat':
+                # if scan ended, restart it
+                if resp['state'][0] == 'disc':
+                    self._mgmtCmd("scan")
+
+            elif respType == 'scan':
+                # device found
+                addr = binascii.b2a_hex(resp['addr'][0]).decode('utf-8')
+                addr = ':'.join([addr[i:i+2] for i in range(0, 12, 2)])
+                if addr in self.scanned:
+                    dev = self.scanned[addr]
+                else:
+                    dev = ScanEntry(addr, self.iface)
+                    self.scanned[addr] = dev
+                isNewData = dev._update(resp)
+
+                for (adtype, desc, value) in dev.getScanData():
+                    if desc == "Manufacturer" and value == manufacturer:
+                        rssi_scans.append(dev.rssi)
+
+            else:
+                raise BTLEException(
+                    BTLEException.INTERNAL_ERROR, "Unexpected response: " + respType)
+
+        self.stop()
+        return rssi_scans
+
     def gatherAverageRSSI(self, manufacturer, n_samples, passive=False):
         self.clear()
         self.start(passive=passive)
