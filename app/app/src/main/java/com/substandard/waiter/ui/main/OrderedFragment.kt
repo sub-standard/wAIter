@@ -28,8 +28,6 @@ class OrderedFragment : Fragment() {
         binding = OrderedFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
-        println("onCreateView")
-
         return binding.root
 
     }
