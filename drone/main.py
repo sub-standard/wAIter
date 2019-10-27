@@ -17,7 +17,7 @@ def withinRange(value):
 
 
 signal.signal(signal.SIGINT, signal_handler)
-manufacturer = sys.argv[1]
+# manufacturer = sys.argv[1]
 # scanner = Scanner()
 
 print "Initalising wAIter Drone"
