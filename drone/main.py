@@ -25,7 +25,7 @@ drone = Drone()
 print "Initialisation Complete"
 print ""
 print "Status check commencing"
-print "Battery Percentage       : " + drone.getBatteryPercent() + "%"
+print "Battery Percentage       : " + str(drone.getBatteryPercent()) + "%"
 print "Battery Status           : " + drone.getBatteryStatus()
 print "Motor Status             : " + drone.getMotorStatus()
 print "Ultrasonic Sensor Status : " + drone.getUltrasonicSensorStatus()
