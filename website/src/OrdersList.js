@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
+import { ObjectId } from "bson"
+import useInterval from "./useInterval"
 
 const Container = styled.div`
   width: 95%;
@@ -67,38 +69,52 @@ const Button = styled.div`
   }
 `
 
-export default function OrdersList() {
-  const orders = [
-    { number: "2348932", name: "fanta" },
-    { number: "9285794", name: "juice" },
-    { number: "9273492", name: "fanta" },
-    { number: "7541634", name: "juice" },
-    { number: "6741974", name: "fanta" },
-    { number: "1645887", name: "juice" }
-  ]
+export default function OrdersList(props) {
+  const [orders, setOrders] = useState([])
+
+  useInterval(() => {
+    props.client.callFunction("get_orders").then(result => {
+      setOrders(result.orders)
+    })
+  }, 1000)
+
+  function sendOrder(orderId) {
+    console.log(orderId)
+    props.client
+      .callFunction("set_sending_order", [new ObjectId(orderId)])
+      .then(result => {
+        alert("Order is being sent!")
+      })
+  }
 
   return (
     <Container>
       <Table>
-        <TableHeaders>
-          <TableHeader>Order Number</TableHeader>
-          <TableHeader>Item</TableHeader>
-          <TableHeader>Send Order</TableHeader>
-        </TableHeaders>
+        <thead>
+          <TableHeaders>
+            <TableHeader>Order Number</TableHeader>
+            <TableHeader>Item</TableHeader>
+            <TableHeader>Send Order</TableHeader>
+          </TableHeaders>
+        </thead>
 
-        {orders.map(order => (
-          <Item>
-            <Data>
-              <Number>{order.number}</Number>
-            </Data>
-            <Data>
-              <Name>{order.name}</Name>
-            </Data>
-            <Data>
-              <Button>Send Order</Button>
-            </Data>
-          </Item>
-        ))}
+        <tbody>
+          {orders.map(order => (
+            <Item key={order.number}>
+              <Data>
+                <Number>{order.number}</Number>
+              </Data>
+              <Data>
+                <Name>{order.name}</Name>
+              </Data>
+              <Data>
+                <Button onClick={() => sendOrder(order._id.toString())}>
+                  Send Order
+                </Button>
+              </Data>
+            </Item>
+          ))}
+        </tbody>
       </Table>
     </Container>
   )

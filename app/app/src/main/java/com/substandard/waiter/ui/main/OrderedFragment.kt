@@ -11,7 +11,6 @@ import androidx.navigation.findNavController
 import com.substandard.waiter.Drinks
 import com.substandard.waiter.R
 import com.substandard.waiter.databinding.OrderedFragmentBinding
-import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.ordered_fragment.*
 
 class OrderedFragment : Fragment() {
@@ -22,15 +21,12 @@ class OrderedFragment : Fragment() {
     private lateinit var binding: OrderedFragmentBinding
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= OrderedFragmentBinding.inflate(inflater, container, false)
+        binding = OrderedFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-
-        println("onCreateView")
 
         return binding.root
 
@@ -42,7 +38,7 @@ class OrderedFragment : Fragment() {
         binding.viewModel = viewModel
 
         // Change image based on drink ordered
-        when(viewModel.getOrder()) {
+        when (viewModel.getOrder()) {
             Drinks.SOTB -> drinkOrdered.setImageResource(R.drawable.sex_on_the_beach)
             Drinks.AS -> drinkOrdered.setImageResource(R.drawable.aperol_spritz)
             Drinks.BL -> drinkOrdered.setImageResource(R.drawable.blue_lagoon)
@@ -53,20 +49,11 @@ class OrderedFragment : Fragment() {
             Drinks.WM -> drinkOrdered.setImageResource(R.drawable.watermelon_margarhitas)
         }
 
-        // Start a thread to poll if order ready to deliver
-        pollOrder()
-
+        viewModel.startBeacon()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         navController = view.findNavController()
     }
-
-    fun pollOrder() {
-        
-    }
-
-
 }

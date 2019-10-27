@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
+import { Stitch } from "mongodb-stitch-browser-sdk"
 import OrdersList from "./OrdersList"
 import icon from "./icon.svg"
+import { UserApiKeyCredential } from "mongodb-stitch-core-sdk"
 
 const Container = styled.div`
   background-color: #f9f9f9;
@@ -32,7 +34,17 @@ const Title = styled.h1`
   font-size: 2.4rem;
 `
 
+const API_KEY =
+  "7wznwkK7WjbhrtYqoAMAhhNWIc4d6nRtOuLmZK3jLuu0a0DAvnH87yB2DKgVpixX"
+const APP_ID = "waiter-zxnop"
+
+const client = Stitch.initializeDefaultAppClient(APP_ID)
+
 export default function App() {
+  useEffect(() => {
+    client.auth.loginWithCredential(new UserApiKeyCredential(API_KEY))
+  }, [])
+
   return (
     <Container>
       <Nav>
@@ -40,7 +52,7 @@ export default function App() {
         <Title>wAIter</Title>
       </Nav>
 
-      <OrdersList />
+      <OrdersList client={client} />
     </Container>
   )
 }

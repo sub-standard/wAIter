@@ -33,13 +33,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->fragment.onDrinkPress(drinks.SOTB)}"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="30dp">
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="Sex on the Beach"
                         android:textColor="#FFFFFF"
                         android:textSize="24dp"
@@ -60,13 +61,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->fragment.onDrinkPress(drinks.BM)}"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="30dp">
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="Bloody Mary"
                         android:textColor="#FFFFFF"
                         android:textSize="24dp"
@@ -87,13 +89,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->fragment.onDrinkPress(drinks.BL)}"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="30dp">
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="Blue Lagoon"
                         android:textColor="#FFFFFF"
                         android:textSize="24dp"
@@ -114,13 +117,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->fragment.onDrinkPress(drinks.AS)}"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="30dp">
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="Aperol Spritz"
                         android:textColor="#FFFFFF"
                         android:textSize="24dp"
@@ -141,13 +145,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->fragment.onDrinkPress(drinks.MT)}"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="30dp">
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="Mai Tai"
                         android:textColor="#FFFFFF"
                         android:textSize="24dp"
@@ -168,13 +173,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->fragment.onDrinkPress(drinks.MJ)}"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="30dp">
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="Mojito"
                         android:textColor="#FFFFFF"
                         android:textSize="24dp"
@@ -195,13 +201,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->fragment.onDrinkPress(drinks.PR)}"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="30dp">
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="Purple Rain"
                         android:textColor="#FFFFFF"
                         android:textSize="24dp"
@@ -222,13 +229,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{()->fragment.onDrinkPress(drinks.WM)}"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="30dp">
 
                     <TextView
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|left"
                         android:text="Watermelon Margarita"
                         android:textColor="#FFFFFF"
                         android:textSize="24dp"
