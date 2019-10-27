@@ -26,9 +26,9 @@ print "Initialisation Complete"
 print ""
 print "Status check commencing"
 print "Battery Percentage       : " + str(drone.getBatteryPercent()) + "%"
-print "Battery Status           : " + drone.getBatteryStatus()
-print "Motor Status             : " + drone.getMotorStatus()
-print "Ultrasonic Sensor Status : " + drone.getUltrasonicSensorStatus()
+print "Battery Status           : " + str(drone.getBatteryStatus())
+print "Motor Status             : " + str(drone.getMotorStatus())
+print "Ultrasonic Sensor Status : " + str(drone.getUltrasonicSensorStatus())
 print "Status check complete"
 
 # scanner.sampleRSSI(manufacturer, 1)
