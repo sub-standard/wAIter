@@ -52,7 +52,17 @@ class MainViewModel : ViewModel() {
     fun createOrder() {
         mongo.client.callFunction<String>(
             "new_order"
-            , listOf(orderDrinks.toString()), String::class.java
+            , listOf(when(orderDrinks) {
+                Drinks.SOTB -> "Sex on the Beach"
+                Drinks.AS -> "Aperol Spritz"
+                Drinks.BL -> "Blue Lagoon"
+                Drinks.BM -> "Bloody Mary"
+                Drinks.MJ -> "Mojito"
+                Drinks.MT -> "Mai Tai"
+                Drinks.PR -> "Purple Rain"
+                Drinks.WM -> "Watermelon Margarita"
+                else -> null
+            }), String::class.java
         )
             .addOnCompleteListener {
                 orderId = it.result
@@ -60,7 +70,6 @@ class MainViewModel : ViewModel() {
                     pollOrder()
                 }
             }
-
 
     }
 
