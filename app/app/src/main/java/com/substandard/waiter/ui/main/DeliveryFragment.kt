@@ -32,11 +32,6 @@ class DeliveryFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.fragment = this
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = view.findNavController()
 
         viewModel.status.observe(this, Observer {
             if (it == "delivered") {
@@ -44,6 +39,13 @@ class DeliveryFragment : Fragment() {
                 navController.popBackStack()
             }
         })
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = view.findNavController()
+
+
     }
 
     fun onDeliveredPress() {

@@ -43,6 +43,8 @@ class OrderFragment : Fragment() {
 
     fun onDrinkPress(drink: Drinks) {
         viewModel.setOrder(drink)
+        viewModel.createOrder()
+
 
         //TODO send signal to site with drink
 

@@ -11,9 +11,6 @@
         android:label="Order"
         tools:layout="@layout/order_fragment" >
         <action
-            android:id="@+id/action_order_fragment_to_delivery_fragment"
-            app:destination="@id/delivery_fragment" />
-        <action
             android:id="@+id/action_order_fragment_to_orderedFragment"
             app:destination="@id/orderedFragment" />
     </fragment>
@@ -26,5 +23,9 @@
     <fragment
         android:id="@+id/orderedFragment"
         android:name="com.substandard.waiter.ui.main.OrderedFragment"
-        android:label="OrderedFragment" />
+        android:label="OrderedFragment" >
+        <action
+            android:id="@+id/action_orderedFragment_to_delivery_fragment"
+            app:destination="@id/delivery_fragment" />
+    </fragment>
 </navigation>

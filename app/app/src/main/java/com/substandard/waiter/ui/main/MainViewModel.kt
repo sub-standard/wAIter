@@ -1,11 +1,17 @@
 package com.substandard.waiter.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+
 import com.substandard.waiter.Drinks
 import com.substandard.waiter.MongoClient
 import com.uriio.beacons.model.iBeacon
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import org.bson.types.ObjectId
 
 class MainViewModel : ViewModel() {
     private val id = "abcdefghijklmnop"
@@ -39,6 +45,40 @@ class MainViewModel : ViewModel() {
 
         mongo.client.callFunction("set_delivered", listOf(orderId)).addOnCompleteListener {
             _status.postValue("delivered")
+        }
+    }
+
+    // send a signal to database
+    fun createOrder() {
+        mongo.client.callFunction<String>(
+            "new_order"
+            , listOf(orderDrinks.toString()), String::class.java
+        )
+            .addOnCompleteListener {
+                orderId = it.result
+                viewModelScope.launch {
+                    pollOrder()
+                }
+            }
+
+
+    }
+
+    fun checkOrder() {
+        mongo.client.callFunction<String>(
+            "get_order_status"
+            , listOf(ObjectId(orderId)), String::class.java
+        )
+            .addOnCompleteListener {
+                _status.postValue(it.result)
+                Log.d("status", it.result)
+            }
+    }
+
+    suspend fun pollOrder() = Dispatchers.IO {
+        while (status.value != "sending") {
+            delay(2000)
+            checkOrder()
         }
     }
 }

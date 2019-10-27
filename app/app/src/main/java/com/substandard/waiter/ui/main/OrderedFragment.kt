@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -50,10 +51,18 @@ class OrderedFragment : Fragment() {
         }
 
         viewModel.startBeacon()
+
+
+        viewModel.status.observe(this, Observer {
+            if (it == "sending") {
+                navController.navigate(R.id.action_orderedFragment_to_delivery_fragment)
+            }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
+
     }
 }
