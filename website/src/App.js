@@ -1,12 +1,9 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
-import { Stitch, AnonymousCredential } from "mongodb-stitch-browser-sdk"
+import { Stitch } from "mongodb-stitch-browser-sdk"
 import OrdersList from "./OrdersList"
 import icon from "./icon.svg"
-import {
-  ApiStitchUserIdentity,
-  UserApiKeyCredential
-} from "mongodb-stitch-core-sdk"
+import { UserApiKeyCredential } from "mongodb-stitch-core-sdk"
 
 const Container = styled.div`
   background-color: #f9f9f9;
