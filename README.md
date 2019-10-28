@@ -1,10 +1,12 @@
 # wAIter
 
-> Autonomous Drone Delivery Service - built for HackTheMidlands 2019
+> Autonomous Drone Delivery Service - winner of HackTheMidlands 2019
 
-![Drone preview](./drone-preview.png)
+![Drone preview](./drone-preview.gif)
 
-![App preview](./app-preview.png)
+![App preview](/Users/pavsidhu/Downloads/IMG_20191027_121115.jpg)
+
+![App preview](./app-preview.jpg)
 
 ![Website preview](./website-preview.png)
 
