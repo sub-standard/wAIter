@@ -76,13 +76,12 @@ class Drone():
         if visionDetect[0] == 0:
             return None
 
-        for i in range(visionDetect[0]):
-            markers[i] = Marker(
-                visionDetect[2][i],
-                visionDetect[3][i],
-                visionDetect[6][i],
-                visionDetect[7][i]
-            )
+        markers = Markers(
+            visionDetect[2],
+            visionDetect[3],
+            visionDetect[6],
+            visionDetect[7]
+        )
         return markers
 
     # ~~~~ MOVEMENT COMMANDS ~~~~
@@ -91,6 +90,9 @@ class Drone():
 
     def land(self):
         self.drone.land()
+
+    def move(self, leftRight, forward, up, turnLeftRight):
+        self.drone.move(leftRight, forward, up, turnLeftRight)
 
     def moveForward(self, speed=None):
         self.drone.moveForward(speed)
@@ -155,7 +157,7 @@ class Drone():
             currentDistance = avgSpeed * (droneCurrentTime - droneStartTime)
 
 
-class Marker():
+class Markers():
     def __init__(self, x, y, dist, angle):
         self.x = x
         self.y = y

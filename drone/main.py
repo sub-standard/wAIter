@@ -4,10 +4,14 @@ import time
 from drone import Drone
 # from scanner import Scanner
 
+drone = Drone()
+
 
 def signal_handler(sig, frame):
-    drone.stop()
-    drone.land()
+    global drone
+    if drone:
+        drone.stop()
+        drone.land()
     sys.exit(0)
 
 
@@ -21,7 +25,7 @@ signal.signal(signal.SIGINT, signal_handler)
 # scanner = Scanner()
 
 print "Initalising wAIter Drone"
-drone = Drone()
+
 print "Initialisation Complete"
 print ""
 print "Status check commencing"
@@ -36,16 +40,19 @@ print "Located next destination"
 
 print "Taking off"
 drone.takeoff()
+time.sleep(7.5)
+drone.stop()
+# drone.moveRight(0.003)
 
 print "Moving towards target"
-drone.moveForward(0.05)
+drone.move(-0.01, 0.08, 0.0, 0.0)
 
 markers = None
-start = time.time
+start = time.time()
 while markers == None:
     markers = drone.getTaggedMarkers()
-    end = time.time
-    if end - start > 2:
+    end = time.time()
+    if end - start > 5:
         drone.stop()
         drone.land()
         exit()
@@ -54,18 +61,18 @@ drone.stop()
 print "Located LZ"
 
 print "Zeroing in"
-while not withinRange(markers[0].x) and not withinRange(markers[0].y):
-    if markers[0].x < 500:
+while not markers or (not withinRange(markers.x[0]) and not withinRange(markers.y[0])):
+    if markers.y[0] < 500:
         drone.moveForward(0.05)
     else:
         drone.moveBack(0.05)
 
-    if markers[0].y < 500:
-        drone.moveLeft(0.05)
+    if markers.x[0] < 500:
+        drone.moveLeft(0.1)
     else:
-        drone.moveRight(0.05)
+        drone.moveRight(0.1)
 
-    time.sleep(markers[0].distance / 1000)
+    time.sleep(markers.distance[0] / 1000)
     drone.stop()
     markers = drone.getTaggedMarkers()
 
