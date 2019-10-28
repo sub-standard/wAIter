@@ -1,6 +1,6 @@
 # wAIter
 
-> Autonomous Drone Delivery Service - winner of HackTheMidlands 2019
+> Autonomous Drone Delivery Service - Winner of HackTheMidlands 2019 🍹
 
 ![Drone preview](./drone-preview.gif)
 
