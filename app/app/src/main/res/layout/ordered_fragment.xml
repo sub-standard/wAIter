@@ -8,6 +8,7 @@
         <variable
             name="viewModel"
             type="com.substandard.waiter.ui.main.MainViewModel" />
+
         <variable
             name="drinks"
             type="com.substandard.waiter.Drinks" />
@@ -26,11 +27,11 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="180dp"
             android:layout_marginEnd="24dp"
-            android:text="Your Order #062123 have been placed"
-            android:textStyle="bold"
-            android:textSize="24dp"
             android:gravity="center"
+            android:text="Your Order #1846 has been placed"
             android:textColor="#FFFFFF"
+            android:textSize="24dp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
