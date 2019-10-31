@@ -4,7 +4,7 @@
 
 ![Drone preview](./drone-preview.gif)
 
-![App preview](./app-preview.jpg)
+<img src="app-preview.jpg" width="300">
 
 ![Website preview](./website-preview.png)
 
