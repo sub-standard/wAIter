@@ -4,8 +4,6 @@
 
 ![Drone preview](./drone-preview.gif)
 
-![App preview](/Users/pavsidhu/Downloads/IMG_20191027_121115.jpg)
-
 ![App preview](./app-preview.jpg)
 
 ![Website preview](./website-preview.png)
